@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  coffee_db:
+    container_name: gucl_database
+    image: postgres:15.5-alpine
+    environment:
+      POSTGRES_USER: coffeedocker
+      POSTGRES_PASSWORD: coffeedocker
+      POSTGRES_DB: coffee_db
+    ports:
+      - 5432:5432
