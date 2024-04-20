@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller()
+@Controller('voltage-analysis-report')
 export class VoltageAnalysisReportController {}
