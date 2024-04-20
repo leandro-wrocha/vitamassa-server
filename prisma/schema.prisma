@@ -12,3 +12,104 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Factory {
+  F01
+  F02
+  FCOFFEE
+}
+
+model VoltageAnalysisReport {
+  id                                BigInt   @id @default(autoincrement())
+  sector                            String
+  factory                           Factory
+  firmware                          Float
+  rn_voltage                        Float
+  sn_voltage                        Float
+  tn_voltage                        Float
+  phaseneutral_voltage              Float
+  phasetophase_r_voltage            Float
+  phasetophase_s_voltage            Float
+  phasetophase_t_voltage            Float
+  average_phasetophase_voltage      Float
+  r_phase_current                   Float
+  s_phase_current                   Float
+  t_phase_current                   Float
+  total_average_current             Float
+  active_power_r                    Float
+  active_power_s                    Float
+  active_power_t                    Float
+  total_active_power                Float
+  reactive_power_r                  Float
+  reactive_power_s                  Float
+  reactive_power_t                  Float
+  total_reactive_power              Float
+  apparent_power_r                  Float
+  apparent_power_s                  Float
+  apparent_power_t                  Float
+  total_apparent_power              Float
+  power_factor_r                    Float
+  power_factor_s                    Float
+  power_factor_t                    Float
+  total_power_factor                Float
+  frequency                         Float
+  totalizer_kwh_plus_phase_r        Float
+  totalizer_mwh_plus_phase_r        Float
+  totalizer_kwh_plus_phase_s        Float
+  totalizer_mwh_plus_phase_s        Float
+  totalizer_kwh_plus_phase_t        Float
+  totalizer_mwh_plus_phase_t        Float
+  totalizer_kwh_plus_total          Float
+  totalizer_mwh_plus_total          Float
+  totalizer_kwh_minus_total         Float
+  totalizer_mwh_minus_total         Float
+  totalizer_kvarh_indq1_total       Float
+  totalizer_mvarh_indq1_total       Float
+  totalizer_kvarh_capq4_total       Float
+  totalizer_mvarh_capq4_total       Float
+  totalizer_kvarh_q2_total          Float
+  totalizer_mvarh_q2_total          Float
+  totalizer_kvarh_q3_total          Float
+  totalizer_mvarh_q3_total          Float
+  angle_between_voltage_r_current_r Float
+  angle_between_voltage_s_current_s Float
+  angle_between_voltage_t_current_t Float
+  angle_between_voltage_r_voltage_r Float
+  angle_between_voltage_r_voltage_s Float
+  angle_between_voltage_r_voltage_t Float
+  thd_voltage_r                     Float
+  thd_voltage_s                     Float
+  thd_voltage_t                     Float
+  thd_current_r                     Float
+  thd_current_s                     Float
+  thd_current_t                     Float
+  created_at                        DateTime @default(now())
+  updated_at                        DateTime @updatedAt()
+
+  @@index([sector], name: "idx_voltage_analysis_reports_sector")
+  @@index([factory], name: "idx_voltage_analysis_reports_factory")
+  @@index([firmware], name: "idx_voltage_analysis_reports_firmware")
+  @@map("voltage_analysis_reports")
+}
+
+model CoffeeReport {
+  id                    BigInt   @id @default(autoincrement())
+  sector                String
+  factory               Factory
+  product               Int
+  batch                 Int
+  raw_weight            Float
+  roasted_weight        Float
+  temperature           Float
+  water                 Float
+  breakage              Float
+  furnace_consumption   Float
+  post_burn_consumption Float
+  total_consumption     Float
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt()
+
+  @@index([sector], name: "idx_coffee_reports_sector")
+  @@index([factory], name: "idx_coffee_reports_factory")
+  @@map("coffee_reports")
+}
