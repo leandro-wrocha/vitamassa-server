@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 
 import { VoltageAnalysisReportController } from './voltage-analysis-report.controller';
-import { VoltageAnalysisReportService } from './voltage-analysis-report.service';
+import { PrismaService } from 'src/prisma.service';
+import { UseCaseStore } from './useCases/use-cases-store.service';
 
 @Module({
   imports: [],
   controllers: [VoltageAnalysisReportController],
-  providers: [VoltageAnalysisReportService],
+  providers: [PrismaService, UseCaseStore],
 })
 export class VoltageAnalysisReportModule {}
