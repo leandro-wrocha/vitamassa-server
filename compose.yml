@@ -1,12 +1,12 @@
 version: "3.8"
 
 services:
-  coffee_db:
-    container_name: gucl_database
+  vitamassa_db:
+    container_name: vitamassa_container
     image: postgres:15.5-alpine
     environment:
-      POSTGRES_USER: coffeedocker
-      POSTGRES_PASSWORD: coffeedocker
-      POSTGRES_DB: coffee_db
+      POSTGRES_USER: vitamassa
+      POSTGRES_PASSWORD: vitamassa
+      POSTGRES_DB: vitamassa_db
     ports:
       - 5432:5432
