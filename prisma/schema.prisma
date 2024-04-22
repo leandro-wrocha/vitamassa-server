@@ -21,6 +21,7 @@ enum Factory {
 
 model VoltageAnalysisReport {
   id                                BigInt   @id @default(autoincrement())
+  timestamps                        DateTime
   sector                            String
   factory                           Factory
   firmware                          Float
